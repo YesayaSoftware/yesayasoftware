@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\Auth\LoginController;
@@ -125,3 +126,8 @@ Route::put('/comments/{comment}', [
 Route::delete('/comments/{comment}', [
         CommentController::class, 'destroy'
     ])->name('posts.destroy.comment');
+
+// Podcasts
+Route::get('/podcasts', [
+        PodcastController::class, 'index'
+    ])->name('podcast.index');
