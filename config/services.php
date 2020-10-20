@@ -40,4 +40,9 @@ return [
         'token' => env('POSTMARK_TOKEN'),
     ],
 
+    'simplecast' => [
+        'key' => env('SIMPLECAST_KEY'),
+        'url' => env('SIMPLECAST_URL')
+    ]
+
 ];

@@ -15,8 +15,12 @@
 
                         <!-- Navigation Links -->
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <jet-nav-link href="/posts" :active="$page.currentRouteName == 'posts.index' || 'posts.show'">
+                            <jet-nav-link :href="$route('posts.index')" :active="$page.currentRouteName == 'posts.index'">
                                 Posts
+                            </jet-nav-link>
+
+                            <jet-nav-link :href="$route('podcast.index')" :active="$page.currentRouteName == 'podcast.index'">
+                                Podcast
                             </jet-nav-link>
                         </div>
                     </div>
@@ -109,8 +113,12 @@
             <!-- Responsive Navigation Menu -->
             <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                 <div class="pt-2 pb-3 space-y-1">
-                    <jet-responsive-nav-link href="/posts" :active="$page.currentRouteName == 'posts.index' || 'posts.show'">
+                    <jet-responsive-nav-link :href="$route('posts.index')" :active="$page.currentRouteName == 'posts.index' || 'posts.show'">
                         Posts
+                    </jet-responsive-nav-link>
+
+                    <jet-responsive-nav-link :href="$route('podcast.index')" :active="$page.currentRouteName == 'podcast.index'">
+                        Podcast
                     </jet-responsive-nav-link>
                 </div>
 
