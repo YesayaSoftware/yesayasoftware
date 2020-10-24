@@ -61,7 +61,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $appends = [
-        'profile_photo_url',
+        'profile_photo_url', 'is_admin'
     ];
 
     /**
@@ -101,6 +101,16 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function isAdmin()
     {
-        return in_array($this->name, ['Yesaya R. Athuman', 'Dorah P. Ndazi']);
+        return in_array($this->email, explode(',', env('APP_ADMINISTRATORS')));
+    }
+
+    /**
+     * Get the URL to the user's profile photo.
+     *
+     * @return string
+     */
+    public function getIsAdminAttribute()
+    {
+        return $this->isAdmin();
     }
 }

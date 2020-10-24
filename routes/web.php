@@ -26,10 +26,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('login/github', [LoginController::class, 'redirectToProvider']);
 Route::get('login/github/callback', [LoginController::class, 'handleProviderCallback']);
 
-// Route::get('/dashboard', function () {
-//         return Inertia\Inertia::render('Dashboard');
-//     })->name('dashboard');
-
 // Categories
 Route::get('/categories', [
         CategoryController::class, 'index'

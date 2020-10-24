@@ -40,6 +40,11 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        if (! auth()->user()->isAdmin()) {
+            return redirect()->route('categories.index')
+                ->with('errorMessage', 'You do not have permission to perform this action.!');
+        }
+
         return Inertia::render('Categories/Create');
     }
 
@@ -91,6 +96,11 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
+        if (! auth()->user()->isAdmin()) {
+            return redirect()->route('categories.index')
+                ->with('errorMessage', 'You do not have permission to perform this action.!');
+        } 
+
         return Inertia::render('Categories/Edit', [
             'category' => $category,
         ]);

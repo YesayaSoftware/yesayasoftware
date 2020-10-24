@@ -37,7 +37,7 @@ class Post extends Model
      *
      * @var array
      */
-    protected $with = ['category', 'comments'];
+    protected $with = ['category', 'user', 'comments'];
 
     /**
      * The accessors to append to the model's array form.
@@ -79,7 +79,7 @@ class Post extends Model
      */
     public function setSlugAttribute($value)
     {
-        if (static::whereSlug($slug = Str::slug($value))->exists()) 
+        if (static::whereSlug($slug = Str::slug($value))->exists())
             $slug = "{$slug}-{$this->id}";
 
         $this->attributes['slug'] = $slug;
