@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Comment extends Model
 {
     use HasFactory;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -22,6 +22,11 @@ class Comment extends Model
         'user_id'
     ];
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
     protected $with = ['user'];
 
     /**

@@ -8,7 +8,7 @@
                     </h2>
 
                     <div class="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap">
-                        <inertia-link 
+                        <inertia-link
                             :href="`/categories`"
                             class="mt-2 flex items-center text-sm leading-5 text-blue-500 sm:mr-6">
                             <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
@@ -22,21 +22,21 @@
                             <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M13 16v5a1 1 0 01-1 1H9l-3-6a2 2 0 01-2-2 2 2 0 01-2-2v-2c0-1.1.9-2 2-2 0-1.1.9-2 2-2h7.59l4-4H20a2 2 0 012 2v14a2 2 0 01-2 2h-2.41l-4-4H13zm0-2h1.41l4 4H20V4h-1.59l-4 4H13v6zm-2 0V8H6v2H4v2h2v2h5zm0 2H8.24l2 4H11v-4z"/>
                             </svg>
-                            
+
                             {{ category.posts.length }}
                         </div>
                     </div>
                 </div>
-                
-                <div v-if="$page.user" class="mt-5 flex lg:mt-0 lg:ml-4">
+
+                <div v-if="$page.user && $page.user.isAdmin" class="mt-5 flex lg:mt-0 lg:ml-4">
                     <span class="hidden sm:block shadow-sm rounded-md mr-2">
-                        <form id="subscribe-form" 
+                        <form id="subscribe-form"
                             method="POST"
                             @submit.prevent="destroy">
-                            <button type="submit" 
-                            class="inline-flex items-center px-4 py-2 border bg-red-700 border-red-300 text-sm leading-5 font-medium rounded-md text-white hover:text-red-100 focus:outline-none focus:shadow-outline-red focus:border-red-300 active:text-gray-800 active:bg-gray-50 transition duration-150 ease-in-out" 
+                            <button type="submit"
+                            class="inline-flex items-center px-4 py-2 border bg-red-700 border-red-300 text-sm leading-5 font-medium rounded-md text-white hover:text-red-100 focus:outline-none focus:shadow-outline-red focus:border-red-300 active:text-gray-800 active:bg-gray-50 transition duration-150 ease-in-out"
                             :disabled="loading">
-                            
+
                             <half-circle-spinner
                                 v-if="loading"
                                 :animation-duration="1000"
@@ -48,41 +48,41 @@
                             <svg class="-ml-1 mr-2 h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M19 7L18.1327 19.1425C18.0579 20.1891 17.187 21 16.1378 21H7.86224C6.81296 21 5.94208 20.1891 5.86732 19.1425L5 7M10 11V17M14 11V17M15 7V4C15 3.44772 14.5523 3 14 3H10C9.44772 3 9 3.44772 9 4V7M4 7H20" stroke="#fde8e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            
+
                             Delete
                             </button>
                         </form>
                     </span>
 
-                    <span class="hidden sm:block shadow-sm rounded-md">
-                        <inertia-link 
-                            :href="`/categories/${category.slug}/edit`" 
+                    <span v-if="$page.user && $page.user.isAdmin" class="hidden sm:block shadow-sm rounded-md">
+                        <inertia-link
+                            :href="`/categories/${category.slug}/edit`"
                             class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50 transition duration-150 ease-in-out">
                             <svg class="-ml-1 mr-2 h-5 w-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
                             </svg>
-                            
+
                             Edit
                         </inertia-link>
                     </span>
 
-                    <span class="sm:ml-3 shadow-sm rounded-md">
+                    <span v-if="$page.user && $page.user.isAdmin" class="sm:ml-3 shadow-sm rounded-md">
                         <form @submit.prevent="subscribe">
                             <button type="submit" :class="classes">
                                 <svg class="-ml-1 mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                 </svg>
-                                
+
                                 <span v-if="category.isSubscribedTo">Unsubscribe</span>
                                 <span v-else>Subscribe</span>
                             </button>
                         </form>
                     </span>
 
-                    <span x-data="{ open: false }" class="ml-3 relative shadow-sm rounded-md sm:hidden">
+                    <span v-if="$page.user && $page.user.isAdmin" x-data="{ open: false }" class="ml-3 relative shadow-sm rounded-md sm:hidden">
                         <button @click="open = !open" type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:shadow-outline focus:border-blue-300 transition duration-150 ease-in-out">
                             More
-                            
+
                             <svg class="-mr-1 ml-2 h-5 w-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
                             </svg>
@@ -90,8 +90,8 @@
 
                         <div x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 -mr-1 w-48 rounded-md shadow-lg">
                             <div class="py-1 rounded-md bg-white shadow-xs">
-                                <inertia-link 
-                                    :href="`/categories/${category.slug}/edit`" 
+                                <inertia-link
+                                    :href="`/categories/${category.slug}/edit`"
                                     class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
                                     Edit
                                 </inertia-link>
@@ -112,7 +112,7 @@
                                 <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
                                 </pattern>
                             </defs>
-                            
+
                             <rect y="72" width="640" height="400" class="text-gray-50" fill="currentColor" />
                             <rect x="118" width="404" height="500" fill="url(#9ebea6f4-a1f5-4d96-8c4e-4c2abf658047)" />
                         </svg>
@@ -124,25 +124,25 @@
                                 <h2 class="mt-1 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-6xl">
                                     {{ category.name }}
                                 </h2>
-                
+
                                 <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl"
                                         v-html="category.description" />
-                
+
                                 <div class="mt-5 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
                                     <p class="mt-3 text-sm leading-5 text-gray-500">
                                         <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium leading-5 bg-blue-100 text-blue-800">
                                             {{ category.posts.length }}
-                                        </span> posts have been published in this category and 
-                                        
+                                        </span> posts have been published in this category and
+
                                         <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium leading-5 bg-blue-100 text-blue-800">
                                             {{ category.subscriptionCount }}
                                         </span> users have
-                                    
+
                                         <span class="font-medium text-gray-900 underline"> subscribed</span>.
                                     </p>
                                 </div>
                             </div>
-                
+
                             <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
                                 <svg class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8 scale-75 origin-top sm:scale-100 lg:hidden" width="640" height="784" fill="none" viewBox="0 0 640 784">
                                     <defs>
@@ -150,13 +150,13 @@
                                             <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
                                         </pattern>
                                     </defs>
-                                    
+
                                     <rect y="72" width="640" height="640" class="text-gray-50" fill="currentColor" />
                                     <rect x="118" width="404" height="784" fill="url(#4f4f415c-a0e9-44c2-9601-6ded5a34a13e)" />
                                 </svg>
-                    
+
                                 <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
-                                    <img class="w-full" 
+                                    <img class="w-full"
                                             :src="`/${category.thumbnail}`" :alt="category.name" />
                                 </div>
                             </div>
@@ -193,9 +193,9 @@
         computed: {
             classes() {
                 return [
-                    'inline-flex items-center px-4 py-2  text-sm leading-5 font-medium rounded-md transition duration-150 ease-in-out ', 
-                        this.category.isSubscribedTo ? 
-                    'border border-gray-300 text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50' : 
+                    'inline-flex items-center px-4 py-2  text-sm leading-5 font-medium rounded-md transition duration-150 ease-in-out ',
+                        this.category.isSubscribedTo ?
+                    'border border-gray-300 text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50' :
                     'border border-transparent text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700'
                 ];
             }
@@ -205,7 +205,7 @@
             subscribe() {
                 if (this.category.isSubscribedTo == true)
                     this.$inertia.delete(this.$route('categories.subscriptions.destroy', this.category.slug))
-                else 
+                else
                     this.$inertia.post(this.$route('categories.subscriptions.store', this.category.slug))
             },
 
