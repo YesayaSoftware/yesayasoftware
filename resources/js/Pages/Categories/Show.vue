@@ -28,7 +28,7 @@
                     </div>
                 </div>
 
-                <div v-if="$page.user && $page.user.isAdmin" class="mt-5 flex lg:mt-0 lg:ml-4">
+                <div v-if="$page.user && $page.user.is_admin" class="mt-5 flex lg:mt-0 lg:ml-4">
                     <span class="hidden sm:block shadow-sm rounded-md mr-2">
                         <form id="subscribe-form"
                             method="POST"
@@ -54,7 +54,7 @@
                         </form>
                     </span>
 
-                    <span v-if="$page.user && $page.user.isAdmin" class="hidden sm:block shadow-sm rounded-md">
+                    <span v-if="$page.user && $page.user.is_admin" class="hidden sm:block shadow-sm rounded-md">
                         <inertia-link
                             :href="`/categories/${category.slug}/edit`"
                             class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50 transition duration-150 ease-in-out">
@@ -66,20 +66,20 @@
                         </inertia-link>
                     </span>
 
-                    <span v-if="$page.user && $page.user.isAdmin" class="sm:ml-3 shadow-sm rounded-md">
+                    <span v-if="$page.user && $page.user.is_admin" class="sm:ml-3 shadow-sm rounded-md">
                         <form @submit.prevent="subscribe">
                             <button type="submit" :class="classes">
                                 <svg class="-ml-1 mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                 </svg>
 
-                                <span v-if="category.isSubscribedTo">Unsubscribe</span>
+                                <span v-if="category.is_subscribed_to">Unsubscribe</span>
                                 <span v-else>Subscribe</span>
                             </button>
                         </form>
                     </span>
 
-                    <span v-if="$page.user && $page.user.isAdmin" x-data="{ open: false }" class="ml-3 relative shadow-sm rounded-md sm:hidden">
+                    <span v-if="$page.user && $page.user.is_admin" x-data="{ open: false }" class="ml-3 relative shadow-sm rounded-md sm:hidden">
                         <button @click="open = !open" type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:shadow-outline focus:border-blue-300 transition duration-150 ease-in-out">
                             More
 
@@ -135,7 +135,7 @@
                                         </span> posts have been published in this category and
 
                                         <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium leading-5 bg-blue-100 text-blue-800">
-                                            {{ category.subscriptionCount }}
+                                            {{ category.subscription_count }}
                                         </span> users have
 
                                         <span class="font-medium text-gray-900 underline"> subscribed</span>.
@@ -157,7 +157,7 @@
 
                                 <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
                                     <img class="w-full"
-                                            :src="`/${category.thumbnail}`" :alt="category.name" />
+                                            :src="category.thumbnail_url" :alt="category.name" />
                                 </div>
                             </div>
                         </div>
@@ -194,7 +194,7 @@
             classes() {
                 return [
                     'inline-flex items-center px-4 py-2  text-sm leading-5 font-medium rounded-md transition duration-150 ease-in-out ',
-                        this.category.isSubscribedTo ?
+                        this.category.is_subscribed_to ?
                     'border border-gray-300 text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50' :
                     'border border-transparent text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700'
                 ];
@@ -203,7 +203,7 @@
 
         methods: {
             subscribe() {
-                if (this.category.isSubscribedTo == true)
+                if (this.category.is_subscribed_to === true)
                     this.$inertia.delete(this.$route('categories.subscriptions.destroy', this.category.slug))
                 else
                     this.$inertia.post(this.$route('categories.subscriptions.store', this.category.slug))
@@ -212,7 +212,7 @@
             destroy() {
                 this.loading = true
 
-                this.$inertia.delete(this.$route('categories.destroy' + this.category.slug))
+                this.$inertia.delete(this.$route('categories.destroy', this.category.slug))
                 .then(() => {
                     this.loading = false;
                 })

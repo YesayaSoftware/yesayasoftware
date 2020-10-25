@@ -13,11 +13,10 @@ class PostPolicy
     /**
      * Determine whether the user can update the post.
      *
-     * @param  \App\User $user
+     * @param User $user
      * @param Post $post
      *
      * @return mixed
-     *
      */
     public function update(User $user, Post $post)
     {

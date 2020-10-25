@@ -52,7 +52,7 @@ Route::put('/categories/{category}', [
     ])->name('categories.update');
 
 Route::delete('/categories/thumbnail/{category}', [
-        CategoryController::class, 'deleteThumbnail'
+        CategoryController::class, 'removeThumbnail'
     ])->name('categories.delete.thumbnail');
 
 Route::delete('/categories/{category}', [
@@ -72,23 +72,23 @@ Route::post('/posts', [
         PostController::class, 'store'])
     ->name('posts.store');
 
-Route::get('/posts/{category}/{post}', [
+Route::get('/posts/{post}', [
         PostController::class, 'show'
     ])->name('posts.show');
 
-Route::get('/posts/{category}/{post}/edit', [
+Route::get('/posts/{post}/edit', [
         PostController::class, 'edit'
     ])->name('posts.edit');
 
-Route::put('/posts/{category}/{post}', [
+Route::put('/posts/{post}', [
         PostController::class, 'update'
     ])->name('posts.update');
 
 Route::delete('/posts/thumbnail/{category}', [
-        PostController::class, 'deleteThumbnail'
+        PostController::class, 'removeThumbnail'
     ])->name('posts.delete.thumbnail');
 
-Route::delete('/posts/{category}/{post}', [
+Route::delete('/posts/{post}', [
         PostController::class, 'destroy'
     ])->name('posts.destroy');
 

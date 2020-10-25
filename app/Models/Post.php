@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\Comment;
-use App\Models\Category;;
+use App\Models\Traits\Favoritable;
+use App\Models\Traits\RecordsActivity;
+use App\Models\Traits\Thumbnail;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
-    use HasFactory, Favoritable, RecordsActivity;
+    use HasFactory, Favoritable, RecordsActivity, Thumbnail;
 
     /**
      * The attributes that are mass assignable.
@@ -44,7 +44,7 @@ class Post extends Model
      *
      * @var array
      */
-    protected $appends = ['favoritesCount', 'isFavorited'];
+    protected $appends = ['favorites_count', 'is_favorited', 'thumbnail_url'];
 
     /**
      * Boot the model.
@@ -118,10 +118,10 @@ class Post extends Model
     /**
      * Add a comment to the post.
      *
-     * @param  array $comment
+     * @param array $comment
      * @return Model
      */
-    public function addComment($comment)
+    public function addComment(array $comment)
     {
         $comment = $this->comments()->create($comment);
 

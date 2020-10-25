@@ -79,7 +79,7 @@
                                     </inertia-link>
 
                                     <inertia-link
-                                        :href="$route('podcasts.index')"
+                                        :href="$route('podcast.index')"
                                         class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out" role="menuitem">
                                         Podcasts
                                     </inertia-link>
@@ -270,7 +270,7 @@
                     <div  v-for="post in posts" :key="post.id"
                         class="flex flex-col rounded-lg shadow-lg overflow-hidden">
                         <inertia-link
-                            :href="`/posts/${post.category.slug}/${post.slug}`">
+                            :href="$route('posts.show', post.slug)">
                             <div class="flex-shrink-0">
                                 <img class="h-48 w-full object-cover" :src="post.thumbnail" :alt="posts.title">
                             </div>

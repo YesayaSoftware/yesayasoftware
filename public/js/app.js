@@ -2104,6 +2104,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -3633,7 +3637,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -3852,34 +3855,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3907,35 +3882,41 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     update: function update() {
+      var _this = this;
+
+      this.loading = true;
+
       if (this.$refs.thumbnail) {
         this.form.thumbnail = this.$refs.thumbnail.files[0];
       }
 
       this.form.post('/categories/' + this.category.slug, {
         preserveScroll: true
+      }).then(function () {
+        _this.loading = false;
       });
     },
     selectNewThumbnail: function selectNewThumbnail() {
       this.$refs.thumbnail.click();
     },
     updateThumbnailPreview: function updateThumbnailPreview() {
-      var _this = this;
+      var _this2 = this;
 
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        _this.thumbnailPreview = e.target.result;
+        _this2.thumbnailPreview = e.target.result;
       };
 
       reader.readAsDataURL(this.$refs.thumbnail.files[0]);
     },
     deleteThumbnail: function deleteThumbnail() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$inertia["delete"]('/categories/thumbnail/' + this.category.slug, {
         preserveScroll: true
       }).then(function () {
-        _this2.thumbnailPreview = null;
+        _this3.thumbnailPreview = null;
       });
     }
   }
@@ -4293,18 +4274,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     classes: function classes() {
-      return ['inline-flex items-center px-4 py-2  text-sm leading-5 font-medium rounded-md transition duration-150 ease-in-out ', this.category.isSubscribedTo ? 'border border-gray-300 text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50' : 'border border-transparent text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700'];
+      return ['inline-flex items-center px-4 py-2  text-sm leading-5 font-medium rounded-md transition duration-150 ease-in-out ', this.category.is_subscribed_to ? 'border border-gray-300 text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50' : 'border border-transparent text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700'];
     }
   },
   methods: {
     subscribe: function subscribe() {
-      if (this.category.isSubscribedTo == true) this.$inertia["delete"](this.$route('categories.subscriptions.destroy', this.category.slug));else this.$inertia.post(this.$route('categories.subscriptions.store', this.category.slug));
+      if (this.category.is_subscribed_to === true) this.$inertia["delete"](this.$route('categories.subscriptions.destroy', this.category.slug));else this.$inertia.post(this.$route('categories.subscriptions.store', this.category.slug));
     },
     destroy: function destroy() {
       var _this = this;
 
       this.loading = true;
-      this.$inertia["delete"](this.$route('categories.destroy' + this.category.slug)).then(function () {
+      this.$inertia["delete"](this.$route('categories.destroy', this.category.slug)).then(function () {
         _this.loading = false;
       });
     }
@@ -4364,23 +4345,14 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: this.$inertia.form({
-        // id: '',
         body: '',
         post_id: this.post.id
       }, {
         bag: 'createComment',
         resetOnSuccess: true
-      }) // editing: false
-
+      })
     };
   },
-  // mounted() {
-  //     this.$root.$on('edit-comment', (data) => {
-  //         this.form.id = data.id
-  //         this.form.body = data.body
-  //         this.editing = true
-  //     })
-  // },
   methods: {
     store: function store() {
       this.form.post(this.$route('posts.store.comment', this.post.slug), {
@@ -5126,8 +5098,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5577,6 +5547,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -5605,33 +5576,38 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     update: function update() {
+      var _this = this;
+
+      this.loading = true;
+
       if (this.$refs.thumbnail) {
         this.form.thumbnail = this.$refs.thumbnail.files[0];
       }
 
       this.form.post(this.$route('posts.update', {
-        category: this.category.slug,
         post: this.post.slug
       }), {
         preserveScroll: true
+      }).then(function () {
+        _this.loading = false;
       });
     },
     selectNewThumbnail: function selectNewThumbnail() {
       this.$refs.thumbnail.click();
     },
     updateThumbnailPreview: function updateThumbnailPreview() {
-      var _this = this;
+      var _this2 = this;
 
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        _this.thumbnailPreview = e.target.result;
+        _this2.thumbnailPreview = e.target.result;
       };
 
       reader.readAsDataURL(this.$refs.thumbnail.files[0]);
     },
     deleteThumbnail: function deleteThumbnail() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$inertia["delete"](this.$route('posts.update', {
         category: this.category.slug,
@@ -5639,7 +5615,7 @@ __webpack_require__.r(__webpack_exports__);
       }), {
         preserveScroll: true
       }).then(function () {
-        _this2.thumbnailPreview = null;
+        _this3.thumbnailPreview = null;
       });
     }
   }
@@ -6006,6 +5982,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -6025,12 +6002,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     classes: function classes() {
-      return ['inline-flex items-center px-4 py-2  text-sm leading-5 font-medium rounded-md transition duration-150 ease-in-out ', this.post.isFavorited ? 'border border-gray-300 text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50' : 'border border-transparent text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700'];
+      return ['inline-flex items-center px-4 py-2  text-sm leading-5 font-medium rounded-md transition duration-150 ease-in-out ', this.post.is_favorited ? 'border border-gray-300 text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50' : 'border border-transparent text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700'];
     }
   },
   methods: {
     favorite: function favorite() {
-      if (this.post.isFavorited) this.$inertia["delete"](this.$route('posts.destroy.favorites', this.post.slug));else this.$inertia.post(this.$route('posts.store.favorites', this.post.slug));
+      if (this.post.is_favorited) this.$inertia["delete"](this.$route('posts.destroy.favorites', this.post.slug));else this.$inertia.post(this.$route('posts.store.favorites', this.post.slug));
     },
     destroy: function destroy() {
       var _this = this;
@@ -33153,7 +33130,11 @@ var staticRenderFns = [
                   {
                     staticClass:
                       "text-base leading-6 text-gray-500 hover:text-gray-900",
-                    attrs: { href: "#" }
+                    attrs: {
+                      href:
+                        "https://podcasts.google.com/feed/aHR0cHM6Ly9mZWVkcy5zaW1wbGVjYXN0LmNvbS9VT0l2bTlHTw",
+                      target: "_blank"
+                    }
                   },
                   [
                     _vm._v(
@@ -33169,7 +33150,11 @@ var staticRenderFns = [
                   {
                     staticClass:
                       "text-base leading-6 text-gray-500 hover:text-gray-900",
-                    attrs: { href: "#" }
+                    attrs: {
+                      href:
+                        "https://podcasts.apple.com/tz/podcast/yesaya-software-podcast/id1450412561",
+                      target: "_blank"
+                    }
                   },
                   [
                     _vm._v(
@@ -36554,40 +36539,6 @@ var render = function() {
                               "\n\n                        Go back\n                    "
                             )
                           ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mr-6"
-                          },
-                          [
-                            _c(
-                              "svg",
-                              {
-                                staticClass:
-                                  "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400",
-                                attrs: {
-                                  fill: "currentColor",
-                                  viewBox: "0 0 24 24"
-                                }
-                              },
-                              [
-                                _c("path", {
-                                  attrs: {
-                                    d:
-                                      "M13 16v5a1 1 0 01-1 1H9l-3-6a2 2 0 01-2-2 2 2 0 01-2-2v-2c0-1.1.9-2 2-2 0-1.1.9-2 2-2h7.59l4-4H20a2 2 0 012 2v14a2 2 0 01-2 2h-2.41l-4-4H13zm0-2h1.41l4 4H20V4h-1.59l-4 4H13v6zm-2 0V8H6v2H4v2h2v2h5zm0 2H8.24l2 4H11v-4z"
-                                  }
-                                })
-                              ]
-                            ),
-                            _vm._v(
-                              "\n                        \n                        " +
-                                _vm._s(_vm.category.posts.length) +
-                                "\n                    "
-                            )
-                          ]
                         )
                       ],
                       1
@@ -36604,7 +36555,12 @@ var render = function() {
                           {
                             staticClass:
                               "inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50 transition duration-150 ease-in-out",
-                            attrs: { href: "/categories/" + _vm.category.slug }
+                            attrs: {
+                              href: _vm.$route(
+                                "categories.show",
+                                _vm.category.slug
+                              )
+                            }
                           },
                           [
                             _c(
@@ -36626,7 +36582,7 @@ var render = function() {
                               ]
                             ),
                             _vm._v(
-                              "\n                        \n                        View\n                    "
+                              "\n\n                        View\n                    "
                             )
                           ]
                         )
@@ -36678,114 +36634,9 @@ var render = function() {
                                       ]
                                     ),
                                     _vm._v(
-                                      "\n                            \n                            Subscribe\n                        "
+                                      "\n\n                            Subscribe\n                        "
                                     )
                                   ]
-                                )
-                              ]
-                            )
-                          ]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.$page.user
-                      ? _c(
-                          "span",
-                          {
-                            staticClass:
-                              "ml-3 relative shadow-sm rounded-md sm:hidden",
-                            attrs: { "x-data": "{ open: false }" }
-                          },
-                          [
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:shadow-outline focus:border-blue-300 transition duration-150 ease-in-out",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.open = !_vm.open
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                        More\n                        \n                        "
-                                ),
-                                _c(
-                                  "svg",
-                                  {
-                                    staticClass:
-                                      "-mr-1 ml-2 h-5 w-5 text-gray-500",
-                                    attrs: {
-                                      fill: "currentColor",
-                                      viewBox: "0 0 20 20"
-                                    }
-                                  },
-                                  [
-                                    _c("path", {
-                                      attrs: {
-                                        "fill-rule": "evenodd",
-                                        d:
-                                          "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-                                        "clip-rule": "evenodd"
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "origin-top-right absolute right-0 mt-2 -mr-1 w-48 rounded-md shadow-lg",
-                                attrs: {
-                                  "x-show": "open",
-                                  "x-transition:enter":
-                                    "transition ease-out duration-200",
-                                  "x-transition:enter-start":
-                                    "transform opacity-0 scale-95",
-                                  "x-transition:enter-end":
-                                    "transform opacity-100 scale-100",
-                                  "x-transition:leave":
-                                    "transition ease-in duration-75",
-                                  "x-transition:leave-start":
-                                    "transform opacity-100 scale-100",
-                                  "x-transition:leave-end":
-                                    "transform opacity-0 scale-95"
-                                }
-                              },
-                              [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "py-1 rounded-md bg-white shadow-xs"
-                                  },
-                                  [
-                                    _c(
-                                      "inertia-link",
-                                      {
-                                        staticClass:
-                                          "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out",
-                                        attrs: {
-                                          href:
-                                            "/categories/" +
-                                            _vm.category.slug +
-                                            "/edit"
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                Edit\n                            "
-                                        )
-                                      ]
-                                    )
-                                  ],
-                                  1
                                 )
                               ]
                             )
@@ -36960,7 +36811,7 @@ var render = function() {
                               _c("img", {
                                 staticClass: "w-full object-cover",
                                 attrs: {
-                                  src: "/" + _vm.form.thumbnail,
+                                  src: _vm.category.thumbnail_url,
                                   alt: "Current Post Thumbnail"
                                 }
                               })
@@ -37011,7 +36862,7 @@ var render = function() {
                             ]
                           ),
                           _vm._v(" "),
-                           true
+                          _vm.form.thumbnail
                             ? _c(
                                 "button",
                                 {
@@ -37031,7 +36882,7 @@ var render = function() {
                                   )
                                 ]
                               )
-                            : undefined,
+                            : _vm._e(),
                           _vm._v(" "),
                           _c(
                             "p",
@@ -37287,7 +37138,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _vm.$page.user && _vm.$page.user.isAdmin
+                    _vm.$page.user && _vm.$page.user.is_admin
                       ? _c(
                           "span",
                           { staticClass: "sm:ml-3 shadow-sm rounded-md" },
@@ -37495,7 +37346,7 @@ var render = function() {
                                 staticClass:
                                   "absolute object-cover h-full w-full shadow-lg rounded-lg",
                                 attrs: {
-                                  src: "/" + category.thumbnail,
+                                  src: category.thumbnail_url,
                                   alt: category.name
                                 }
                               })
@@ -37536,7 +37387,7 @@ var render = function() {
                                       ),
                                       _vm._v(
                                         "\n\n                                            " +
-                                          _vm._s(category.subscriptionCount) +
+                                          _vm._s(category.subscription_count) +
                                           " subscriptions\n                                        "
                                       )
                                     ]
@@ -37739,7 +37590,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm.$page.user && _vm.$page.user.isAdmin
+                  _vm.$page.user && _vm.$page.user.is_admin
                     ? _c("div", { staticClass: "mt-5 flex lg:mt-0 lg:ml-4" }, [
                         _c(
                           "span",
@@ -37816,7 +37667,7 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _vm.$page.user && _vm.$page.user.isAdmin
+                        _vm.$page.user && _vm.$page.user.is_admin
                           ? _c(
                               "span",
                               {
@@ -37866,7 +37717,7 @@ var render = function() {
                             )
                           : _vm._e(),
                         _vm._v(" "),
-                        _vm.$page.user && _vm.$page.user.isAdmin
+                        _vm.$page.user && _vm.$page.user.is_admin
                           ? _c(
                               "span",
                               { staticClass: "sm:ml-3 shadow-sm rounded-md" },
@@ -37910,7 +37761,7 @@ var render = function() {
                                           ]
                                         ),
                                         _vm._v(" "),
-                                        _vm.category.isSubscribedTo
+                                        _vm.category.is_subscribed_to
                                           ? _c("span", [_vm._v("Unsubscribe")])
                                           : _c("span", [_vm._v("Subscribe")])
                                       ]
@@ -37921,7 +37772,7 @@ var render = function() {
                             )
                           : _vm._e(),
                         _vm._v(" "),
-                        _vm.$page.user && _vm.$page.user.isAdmin
+                        _vm.$page.user && _vm.$page.user.is_admin
                           ? _c(
                               "span",
                               {
@@ -38185,7 +38036,7 @@ var render = function() {
                                 [
                                   _vm._v(
                                     "\n                                        " +
-                                      _vm._s(_vm.category.subscriptionCount) +
+                                      _vm._s(_vm.category.subscription_count) +
                                       "\n                                    "
                                   )
                                 ]
@@ -38288,7 +38139,7 @@ var render = function() {
                           _c("img", {
                             staticClass: "w-full",
                             attrs: {
-                              src: "/" + _vm.category.thumbnail,
+                              src: _vm.category.thumbnail_url,
                               alt: _vm.category.name
                             }
                           })
@@ -39035,7 +38886,7 @@ var render = function() {
                                 staticClass:
                                   "mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out",
                                 attrs: {
-                                  href: _vm.$route("podcasts.index"),
+                                  href: _vm.$route("podcast.index"),
                                   role: "menuitem"
                                 }
                               },
@@ -39524,11 +39375,7 @@ var render = function() {
                   [
                     _c(
                       "inertia-link",
-                      {
-                        attrs: {
-                          href: "/posts/" + post.category.slug + "/" + post.slug
-                        }
-                      },
+                      { attrs: { href: _vm.$route("posts.show", post.slug) } },
                       [
                         _c("div", { staticClass: "flex-shrink-0" }, [
                           _c("img", {
@@ -40100,7 +39947,7 @@ var render = function() {
                               ]
                             ),
                             _vm._v(
-                              "\n                        \n                        Pita Google au Apple Podcast sasa\n                    "
+                              "\n\n                        Pita Google au Apple Podcast sasa\n                    "
                             )
                           ]
                         )
@@ -40138,7 +39985,7 @@ var render = function() {
                       { staticClass: "sm:ml-3 shadow-sm rounded-md" },
                       [
                         _c(
-                          "inertia-link",
+                          "a",
                           {
                             staticClass:
                               "inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-700 focus:outline-none focus:shadow-outline-gray focus:border-gray-700 active:bg-gray-700 transition duration-150 ease-in-out",
@@ -40154,8 +40001,7 @@ var render = function() {
                             )
                           ]
                         )
-                      ],
-                      1
+                      ]
                     ),
                     _vm._v(" "),
                     _c(
@@ -40180,7 +40026,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                        More\n                        \n                        "
+                              "\n                        More\n\n                        "
                             ),
                             _c(
                               "svg",
@@ -40998,7 +40844,7 @@ var render = function() {
                               ]
                             ),
                             _vm._v(
-                              "\n                        \n                        " +
+                              "\n\n                        " +
                                 _vm._s(_vm.post.comments.length) +
                                 "\n                    "
                             )
@@ -41078,7 +40924,7 @@ var render = function() {
                               ]
                             ),
                             _vm._v(
-                              "\n                        \n                        List\n                    "
+                              "\n\n                        List\n                    "
                             )
                           ]
                         )
@@ -41362,7 +41208,8 @@ var render = function() {
                                   _c("img", {
                                     staticClass: "w-full object-cover",
                                     attrs: {
-                                      src: "/" + _vm.form.thumbnail,
+                                      id: "thumbnail",
+                                      src: _vm.post.thumbnail_url,
                                       alt: "Current Post Thumbnail"
                                     }
                                   })
@@ -41693,7 +41540,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _vm.$page.user && _vm.$page.user.isAdmin
+                    _vm.$page.user && _vm.$page.user.is_admin
                       ? _c(
                           "span",
                           { staticClass: "sm:ml-3 shadow-sm rounded-md" },
@@ -41891,21 +41738,14 @@ var render = function() {
                 [
                   _c(
                     "inertia-link",
-                    {
-                      attrs: {
-                        href: "/posts/" + post.category.slug + "/" + post.slug
-                      }
-                    },
+                    { attrs: { href: _vm.$route("posts.show", post.slug) } },
                     [
                       _c("div", { staticClass: "space-y-4" }, [
                         _c("div", { staticClass: "relative pb-2/3" }, [
                           _c("img", {
                             staticClass:
                               "absolute object-cover h-full w-full shadow-lg rounded-lg",
-                            attrs: {
-                              src: "/" + post.thumbnail,
-                              alt: post.title
-                            }
+                            attrs: { src: post.thumbnail_url, alt: post.title }
                           })
                         ]),
                         _vm._v(" "),
@@ -42166,8 +42006,8 @@ var render = function() {
                               ]
                             ),
                             _vm._v(
-                              "\n                        \n                        " +
-                                _vm._s(_vm.post.favoritesCount) +
+                              "\n\n                        " +
+                                _vm._s(_vm.post.favorites_count) +
                                 " Likes\n                    "
                             )
                           ]
@@ -42177,7 +42017,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm.$page.user
+                  _vm.$page.user && _vm.$page.user.is_admin
                     ? _c("div", { staticClass: "mt-5 flex lg:mt-0 lg:ml-4" }, [
                         _c(
                           "span",
@@ -42243,7 +42083,7 @@ var render = function() {
                                       ]
                                     ),
                                     _vm._v(
-                                      "\n                        \n                        Delete\n                        "
+                                      "\n\n                        Delete\n                        "
                                     )
                                   ],
                                   1
@@ -42253,219 +42093,227 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "hidden sm:block shadow-sm rounded-md"
-                          },
-                          [
-                            _c(
-                              "inertia-link",
+                        _vm.$page.user && _vm.$page.user.is_admin
+                          ? _c(
+                              "span",
                               {
                                 staticClass:
-                                  "inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50 transition duration-150 ease-in-out",
-                                attrs: {
-                                  href: _vm.$route("posts.edit", {
-                                    category: _vm.post.category.slug,
-                                    post: _vm.post.slug
-                                  })
-                                }
+                                  "hidden sm:block shadow-sm rounded-md"
                               },
                               [
                                 _c(
-                                  "svg",
+                                  "inertia-link",
                                   {
                                     staticClass:
-                                      "-ml-1 mr-2 h-5 w-5 text-gray-500",
+                                      "inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50 transition duration-150 ease-in-out",
                                     attrs: {
-                                      fill: "currentColor",
-                                      viewBox: "0 0 20 20"
+                                      href: _vm.$route("posts.edit", {
+                                        category: _vm.post.category.slug,
+                                        post: _vm.post.slug
+                                      })
                                     }
-                                  },
-                                  [
-                                    _c("path", {
-                                      attrs: {
-                                        d:
-                                          "M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
-                                      }
-                                    })
-                                  ]
-                                ),
-                                _vm._v(
-                                  "\n                        \n                        Edit\n                    "
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          { staticClass: "sm:ml-3 shadow-sm rounded-md" },
-                          [
-                            _c(
-                              "form",
-                              {
-                                on: {
-                                  submit: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.favorite($event)
-                                  }
-                                }
-                              },
-                              [
-                                _c(
-                                  "button",
-                                  {
-                                    class: _vm.classes,
-                                    attrs: { type: "submit" }
                                   },
                                   [
                                     _c(
                                       "svg",
                                       {
-                                        staticClass: "-ml-1 mr-2 h-5 w-5",
+                                        staticClass:
+                                          "-ml-1 mr-2 h-5 w-5 text-gray-500",
                                         attrs: {
                                           fill: "currentColor",
-                                          viewBox: "0 0 24 24"
+                                          viewBox: "0 0 20 20"
                                         }
                                       },
                                       [
-                                        _vm.post.isFavorited
-                                          ? _c("path", {
-                                              attrs: {
-                                                strokeLinecap: "round",
-                                                strokeLinejoin: "round",
-                                                strokeWidth: "{2}",
-                                                d:
-                                                  "M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.736 3h4.018a2 2 0 01.485.06l3.76.94m-7 10v5a2 2 0 002 2h.096c.5 0 .905-.405.905-.904 0-.715.211-1.413.608-2.008L17 13V4m-7 10h2m5-10h2a2 2 0 012 2v6a2 2 0 01-2 2h-2.5"
-                                              }
-                                            })
-                                          : _c("path", {
-                                              attrs: {
-                                                strokeLinecap: "round",
-                                                strokeLinejoin: "round",
-                                                strokeWidth: "{2}",
-                                                d:
-                                                  "M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
-                                              }
-                                            })
+                                        _c("path", {
+                                          attrs: {
+                                            d:
+                                              "M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
+                                          }
+                                        })
                                       ]
                                     ),
-                                    _vm._v(" "),
-                                    _vm.post.isFavorited
-                                      ? _c("span", [_vm._v("Unlike")])
-                                      : _c("span", [_vm._v("Like")])
+                                    _vm._v(
+                                      "\n\n                        Edit\n                    "
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.$page.user
+                          ? _c(
+                              "span",
+                              { staticClass: "sm:ml-3 shadow-sm rounded-md" },
+                              [
+                                _c(
+                                  "form",
+                                  {
+                                    on: {
+                                      submit: function($event) {
+                                        $event.preventDefault()
+                                        return _vm.favorite($event)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "button",
+                                      {
+                                        class: _vm.classes,
+                                        attrs: { type: "submit" }
+                                      },
+                                      [
+                                        _c(
+                                          "svg",
+                                          {
+                                            staticClass: "-ml-1 mr-2 h-5 w-5",
+                                            attrs: {
+                                              fill: "currentColor",
+                                              viewBox: "0 0 24 24"
+                                            }
+                                          },
+                                          [
+                                            _vm.post.is_favorited
+                                              ? _c("path", {
+                                                  attrs: {
+                                                    strokeLinecap: "round",
+                                                    strokeLinejoin: "round",
+                                                    strokeWidth: "{2}",
+                                                    d:
+                                                      "M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.736 3h4.018a2 2 0 01.485.06l3.76.94m-7 10v5a2 2 0 002 2h.096c.5 0 .905-.405.905-.904 0-.715.211-1.413.608-2.008L17 13V4m-7 10h2m5-10h2a2 2 0 012 2v6a2 2 0 01-2 2h-2.5"
+                                                  }
+                                                })
+                                              : _c("path", {
+                                                  attrs: {
+                                                    strokeLinecap: "round",
+                                                    strokeLinejoin: "round",
+                                                    strokeWidth: "{2}",
+                                                    d:
+                                                      "M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
+                                                  }
+                                                })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm.post.is_favorited
+                                          ? _c("span", [_vm._v("Unlike")])
+                                          : _c("span", [_vm._v("Like")])
+                                      ]
+                                    )
                                   ]
                                 )
                               ]
                             )
-                          ]
-                        ),
+                          : _vm._e(),
                         _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass:
-                              "ml-3 relative shadow-sm rounded-md sm:hidden",
-                            attrs: { "x-data": "{ open: false }" }
-                          },
-                          [
-                            _c(
-                              "button",
+                        _vm.$page.user && _vm.$page.user.is_admin
+                          ? _c(
+                              "span",
                               {
                                 staticClass:
-                                  "inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:shadow-outline focus:border-blue-300 transition duration-150 ease-in-out",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.open = !_vm.open
-                                  }
-                                }
+                                  "ml-3 relative shadow-sm rounded-md sm:hidden",
+                                attrs: { "x-data": "{ open: false }" }
                               },
                               [
-                                _vm._v(
-                                  "\n                        More\n                        \n                        "
-                                ),
                                 _c(
-                                  "svg",
+                                  "button",
                                   {
                                     staticClass:
-                                      "-mr-1 ml-2 h-5 w-5 text-gray-500",
-                                    attrs: {
-                                      fill: "currentColor",
-                                      viewBox: "0 0 20 20"
+                                      "inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:shadow-outline focus:border-blue-300 transition duration-150 ease-in-out",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.open = !_vm.open
+                                      }
                                     }
                                   },
                                   [
-                                    _c("path", {
-                                      attrs: {
-                                        "fill-rule": "evenodd",
-                                        d:
-                                          "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-                                        "clip-rule": "evenodd"
-                                      }
-                                    })
+                                    _vm._v(
+                                      "\n                        More\n\n                        "
+                                    ),
+                                    _c(
+                                      "svg",
+                                      {
+                                        staticClass:
+                                          "-mr-1 ml-2 h-5 w-5 text-gray-500",
+                                        attrs: {
+                                          fill: "currentColor",
+                                          viewBox: "0 0 20 20"
+                                        }
+                                      },
+                                      [
+                                        _c("path", {
+                                          attrs: {
+                                            "fill-rule": "evenodd",
+                                            d:
+                                              "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                                            "clip-rule": "evenodd"
+                                          }
+                                        })
+                                      ]
+                                    )
                                   ]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "origin-top-right absolute right-0 mt-2 -mr-1 w-48 rounded-md shadow-lg",
-                                attrs: {
-                                  "x-show": "open",
-                                  "x-transition:enter":
-                                    "transition ease-out duration-200",
-                                  "x-transition:enter-start":
-                                    "transform opacity-0 scale-95",
-                                  "x-transition:enter-end":
-                                    "transform opacity-100 scale-100",
-                                  "x-transition:leave":
-                                    "transition ease-in duration-75",
-                                  "x-transition:leave-start":
-                                    "transform opacity-100 scale-100",
-                                  "x-transition:leave-end":
-                                    "transform opacity-0 scale-95"
-                                }
-                              },
-                              [
+                                ),
+                                _vm._v(" "),
                                 _c(
                                   "div",
                                   {
                                     staticClass:
-                                      "py-1 rounded-md bg-white shadow-xs"
+                                      "origin-top-right absolute right-0 mt-2 -mr-1 w-48 rounded-md shadow-lg",
+                                    attrs: {
+                                      "x-show": "open",
+                                      "x-transition:enter":
+                                        "transition ease-out duration-200",
+                                      "x-transition:enter-start":
+                                        "transform opacity-0 scale-95",
+                                      "x-transition:enter-end":
+                                        "transform opacity-100 scale-100",
+                                      "x-transition:leave":
+                                        "transition ease-in duration-75",
+                                      "x-transition:leave-start":
+                                        "transform opacity-100 scale-100",
+                                      "x-transition:leave-end":
+                                        "transform opacity-0 scale-95"
+                                    }
                                   },
                                   [
                                     _c(
-                                      "inertia-link",
+                                      "div",
                                       {
                                         staticClass:
-                                          "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out",
-                                        attrs: {
-                                          href: _vm.$route("posts.edit", {
-                                            category: _vm.post.category.slug,
-                                            post: _vm.post.slug
-                                          })
-                                        }
+                                          "py-1 rounded-md bg-white shadow-xs"
                                       },
                                       [
-                                        _vm._v(
-                                          "\n                                Edit\n                            "
+                                        _c(
+                                          "inertia-link",
+                                          {
+                                            staticClass:
+                                              "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out",
+                                            attrs: {
+                                              href: _vm.$route("posts.edit", {
+                                                category:
+                                                  _vm.post.category.slug,
+                                                post: _vm.post.slug
+                                              })
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                Edit\n                            "
+                                            )
+                                          ]
                                         )
-                                      ]
+                                      ],
+                                      1
                                     )
-                                  ],
-                                  1
+                                  ]
                                 )
                               ]
                             )
-                          ]
-                        )
+                          : _vm._e()
                       ])
                     : _vm._e()
                 ]
@@ -42709,7 +42557,7 @@ var render = function() {
                       _c("img", {
                         staticClass: "w-full rounded-lg",
                         attrs: {
-                          src: "/" + _vm.post.thumbnail,
+                          src: _vm.post.thumbnail_url,
                           alt: _vm.post.title,
                           width: "1310",
                           height: "873"

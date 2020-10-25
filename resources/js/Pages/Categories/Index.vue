@@ -34,7 +34,7 @@
                         </inertia-link>
                     </span>
 
-                    <span v-if="$page.user && $page.user.isAdmin" class="sm:ml-3 shadow-sm rounded-md">
+                    <span v-if="$page.user && $page.user.is_admin" class="sm:ml-3 shadow-sm rounded-md">
                         <inertia-link
                             :href="`/categories/create`"
                             class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700 transition duration-150 ease-in-out">
@@ -90,7 +90,7 @@
                                     <div class="relative pb-2/3">
                                         <img
                                             class="absolute object-cover h-full w-full shadow-lg rounded-lg"
-                                            :src="`/${category.thumbnail}`" :alt="category.name">
+                                            :src="category.thumbnail_url" :alt="category.name">
                                     </div>
 
                                     <div class="space-y-2">
@@ -100,7 +100,7 @@
                                                     <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
                                                 </svg>
 
-                                                {{ category.subscriptionCount }} subscriptions
+                                                {{ category.subscription_count }} subscriptions
                                             </div>
 
                                             <p class="text-blue-600"
@@ -109,11 +109,11 @@
 
                                         <ul class="flex space-x-5">
                                             <li class="flex text-gray-400">
-                                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                                                        <path d="M8 7V3M16 7V3M7 11H17M5 21H19C20.1046 21 21 20.1046 21 19V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V19C3 20.1046 3.89543 21 5 21Z" stroke="#4A5568" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
+                                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M8 7V3M16 7V3M7 11H17M5 21H19C20.1046 21 21 20.1046 21 19V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V19C3 20.1046 3.89543 21 5 21Z" stroke="#4A5568" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
 
-                                                    <span class="text-sm">{{ category.created_at | moment("from", "now") }}</span>
+                                                <span class="text-sm">{{ category.created_at | moment("from", "now") }}</span>
                                             </li>
                                         </ul>
                                     </div>

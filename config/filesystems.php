@@ -65,6 +65,18 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
         ],
 
+        'yesayasoftware' => [
+            'driver' => env('S3_DRIVER', 's3'),
+            'endpoint' => env('S3_ENDPOINT'),
+            'endpoint_url' => env('S3_URL'),
+            'version' => env('S3_VERSION', 'latest'),
+            'key' => env('S3_KEY'),
+            'secret' => env('S3_SECRET'),
+            'region' => env('S3_REGION'),
+            'bucket' => env('S3_BUCKET'),
+            'visibility' => 'public',
+        ],
+
     ],
 
     /*

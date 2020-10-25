@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Thumbnail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -9,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, Thumbnail;
 
     /**
      * The attributes that are mass assignable.
@@ -23,13 +25,13 @@ class Category extends Model
         'thumbnail',
         'user_id'
     ];
-    
+
     /**
      * The accessors to append to the model's array form.
      *
      * @var array
      */
-    protected $appends = ['isSubscribedTo', 'subscriptionCount'];
+    protected $appends = ['is_subscribed_to', 'subscription_count', 'thumbnail_url'];
 
     /**
      * Boot the model.
@@ -52,7 +54,7 @@ class Category extends Model
     {
         return 'slug';
     }
-    
+
     /**
      * Set the proper slug attribute.
      *
@@ -107,9 +109,9 @@ class Category extends Model
     {
         $attributes = ['user_id' => $userId ?: auth()->id()];
 
-        if (! $this->subscriptions()->where($attributes)->exists()) 
+        if (! $this->subscriptions()->where($attributes)->exists())
             return $this->subscriptions()->create($attributes);
-        
+
     }
 
     /**
@@ -122,7 +124,7 @@ class Category extends Model
         $subscription = $this->subscriptions()
             ->where('user_id', $userId ?: auth()->id())->first();
 
-        // Activity::where('subject_id', $subscription->id)->delete();
+         Activity::where('subject_id', $subscription->id)->delete();
 
         $this->subscriptions()
             ->where('user_id', $userId ?: auth()->id())->delete();

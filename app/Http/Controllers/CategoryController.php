@@ -2,27 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Filters\Thumbnail;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
+    private Thumbnail $thumbnail;
+
     /**
      * Create a new CategoryController instance.
      */
     public function __construct()
     {
         $this->middleware(['auth:sanctum', 'verified'])->except(['index', 'show']);
+
+        $this->thumbnail = new Thumbnail();
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Inertia\Response
      */
     public function index()
     {
@@ -36,11 +41,11 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return RedirectResponse|\Inertia\Response
      */
     public function create()
     {
-        if (! auth()->user()->isAdmin()) {
+        if (!auth()->user()->isAdmin()) {
             return redirect()->route('categories.index')
                 ->with('errorMessage', 'You do not have permission to perform this action.!');
         }
@@ -51,20 +56,23 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param Request $request
+     * @return RedirectResponse|Response
+     * @throws AuthorizationException
      */
     public function store(Request $request)
     {
+        $this->authorize('admin', auth()->user());
+
         request()->validate([
             'name' => 'required',
             'description' => 'required'
         ]);
 
-        $category = Category::create([
+        Category::create([
             'name' => request('name'),
             'description' => request('description'),
-            'thumbnail' => $request->file('thumbnail') ? $request->file('thumbnail')->store('category-thumbnails', 'public') : null,
+            'thumbnail' => $request->file('thumbnail') ? $this->thumbnail->storeThumbnail($request, 'categories') : null,
             'user_id' => auth()->id()
         ]);
 
@@ -76,13 +84,13 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Category $category
-     * @return Response
+     * @param Category $category
+     * @return \Inertia\Response
      */
     public function show(Category $category)
     {
         $category = $category->load('posts');
-        
+
         return Inertia::render('Categories/Show', [
             'category' => $category
         ]);
@@ -91,15 +99,14 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Category $category
-     * @return Response
+     * @param Category $category
+     * @return RedirectResponse|\Inertia\Response
      */
     public function edit(Category $category)
     {
-        if (! auth()->user()->isAdmin()) {
+        if (!auth()->user()->isAdmin())
             return redirect()->route('categories.index')
                 ->with('errorMessage', 'You do not have permission to perform this action.!');
-        } 
 
         return Inertia::render('Categories/Edit', [
             'category' => $category,
@@ -109,21 +116,27 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
-     * @param  Category $category
-     * @return Response
+     * @param Request $request
+     * @param Category $category
+     * @return RedirectResponse|Response
+     * @throws AuthorizationException
      */
     public function update(Request $request, Category $category)
     {
+        $this->authorize('admin', auth()->user());
+
         $request->validate([
-            'name' => 'required|unique:categories,name,'.$category->id,
+            'name' => 'required|unique:categories,name,' . $category->id,
             'description' => 'required',
         ]);
+
+        if ($category->thumbnail)
+            !$request->file('thumbnail') ?: $this->thumbnail->deleteThumbnail($category->thumbnail);
 
         $category->update([
             'name' => $request->name,
             'description' => $request->description,
-            'thumbnail' => $request->file('thumbnail') ? $request->file('thumbnail')->store('category-thumbnails', 'public') : $category->thumbnail,
+            'thumbnail' => $request->file('thumbnail') ? $this->thumbnail->storeThumbnail($request, 'categories') : $category->thumbnail,
         ]);
 
         return redirect()->route('categories.show', $category->slug)
@@ -133,34 +146,41 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Category  $category
-     * @return Response
+     * @param Category $category
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function destroy(Category $category)
     {
-         $category->delete();
+        $this->authorize('admin', auth()->user());
+
+        $this->thumbnail->deleteThumbnail($category->thumbnail);
+
+        $category->delete();
 
         return redirect()->route('categories.index')
             ->with('successMessage', 'Category was successfully deleted!');
     }
 
-
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Category  $category
-     * @return Response
+     * @param Category $category
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
-    public function deleteThumbnail(Category $category)
+    public function removeThumbnail(Category $category)
     {
-        Storage::delete($category->thumbnail);
-        
+        $this->authorize('admin', auth()->user());
+
+        $this->thumbnail->deleteThumbnail($category->thumbnail);
+
         $category->update([
-            'thumbnail' => null,
+            'thumbnail' => null
         ]);
 
         return redirect()->back()
             ->with('successMessage', 'Category thumbnail was successfully deleted!');
     }
+
 }

@@ -89,13 +89,17 @@
 
                             <ul class="mt-4">
                                 <li>
-                                    <a href="#" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                                    <a href="https://podcasts.google.com/feed/aHR0cHM6Ly9mZWVkcy5zaW1wbGVjYXN0LmNvbS9VT0l2bTlHTw"
+                                        target="_blank"
+                                        class="text-base leading-6 text-gray-500 hover:text-gray-900">
                                         Google Podcast
                                     </a>
                                 </li>
 
                                 <li class="mt-4">
-                                    <a href="#" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                                    <a href="https://podcasts.apple.com/tz/podcast/yesaya-software-podcast/id1450412561"
+                                       target="_blank"
+                                       class="text-base leading-6 text-gray-500 hover:text-gray-900">
                                         Apple Podcast
                                     </a>
                                 </li>

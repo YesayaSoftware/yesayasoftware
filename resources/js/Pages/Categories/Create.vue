@@ -118,8 +118,7 @@
                                                 :animation-duration="1000"
                                                 :size="20"
                                                 color="#fff"
-                                                class="mr-4"
-                                                />
+                                                class="mr-4" />
                                             Save
                                         </button>
                                     </span>

@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Comment;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class CommentController extends Controller
 {
@@ -22,10 +20,9 @@ class CommentController extends Controller
     /**
      * Persist a new comment.
      *
-     * @param Category $category
      * @param Post $post
      *
-     * @return Response
+     * @return RedirectResponse
      */
     public function store(Post $post)
     {
@@ -49,7 +46,7 @@ class CommentController extends Controller
         $this->authorize('update', $comment);
 
         $comment->update(
-            request()->validate(['body' => 'required']) //|spamfree
+            request()->validate(['body' => 'required'])
         );
 
         return redirect()->back()
@@ -61,7 +58,7 @@ class CommentController extends Controller
      *
      * @param  Comment $comment
      *
-     * @return Response
+     * @return RedirectResponse
      * @throws AuthorizationException
      */
     public function destroy(Comment $comment)
@@ -73,4 +70,5 @@ class CommentController extends Controller
         return redirect()->back()
             ->with('successMessage', 'Comment delete successfully.!');
     }
+
 }

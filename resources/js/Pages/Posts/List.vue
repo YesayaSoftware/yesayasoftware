@@ -15,12 +15,12 @@
                 <ul class="space-y-12 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-3 lg:gap-x-8">
                     <li v-for="post in posts" :key="post.id">
                         <inertia-link
-                            :href="`/posts/${post.category.slug}/${post.slug}`">
+                            :href="$route('posts.show', post.slug)">
                             <div class="space-y-4">
                                 <div class="relative pb-2/3">
                                     <img
                                         class="absolute object-cover h-full w-full shadow-lg rounded-lg"
-                                        :src="`/${post.thumbnail}`" :alt="post.title">
+                                        :src="post.thumbnail_url" :alt="post.title">
                                 </div>
 
                                 <div class="space-y-2">
