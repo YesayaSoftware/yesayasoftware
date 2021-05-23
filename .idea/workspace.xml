@@ -4,7 +4,6 @@
     <list default="true" id="09c43f9b-a513-44e0-ace6-c4d824969ee2" name="Default Changelist" comment="&lt;span v-if=&quot;value&quot;&gt;{{ value }}&lt;/span&gt;&lt;span v-if=&quot;value&quot;&gt;{{ value }}&lt;/span&gt;">
       <change beforePath="$PROJECT_DIR$/.env.travis" beforeDir="false" afterPath="$PROJECT_DIR$/.env.travis" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -265,7 +264,7 @@
       <workItem from="1621498910209" duration="159000" />
       <workItem from="1621506386051" duration="8340000" />
       <workItem from="1621690044923" duration="6930000" />
-      <workItem from="1621742449283" duration="1078000" />
+      <workItem from="1621742449283" duration="1354000" />
     </task>
     <servers />
   </component>
