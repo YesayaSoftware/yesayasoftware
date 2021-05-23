@@ -3,11 +3,26 @@ language: php
 php:
   - 7.4
 
+services:
+      - mysql
+
 before_script:
   - cp .env.travis .env
+  - mysql -e 'create database testing;'
+  - composer self-update
   - composer install --no-interaction
   - php artisan key:generate
+
+script:
+  - vendor/bin/phpunit
 
 cache:
   directories:
     - vendor
+
+notifications:
+email:
+  recipients:
+    - yesaya@yesayasoftware.co.tz
+  on_success: always
+  on_failure: always
