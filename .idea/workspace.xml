@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09c43f9b-a513-44e0-ace6-c4d824969ee2" name="Default Changelist" comment="&lt;span v-if=&quot;value&quot;&gt;{{ value }}&lt;/span&gt;&lt;span v-if=&quot;value&quot;&gt;{{ value }}&lt;/span&gt;">
-      <change afterPath="$PROJECT_DIR$/resources/js/YesayaSoftware/FeaturedPosts.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/YesayaSoftware/Form/Input.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/YesayaSoftware/Form/Label.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/YesayaSoftware/Form/PrimaryButton.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/YesayaSoftware/Form/PrimaryLink.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/YesayaSoftware/Form/SecondaryLink.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/YesayaSoftware/Form/Textarea.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/YesayaSoftware/Goals.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/YesayaSoftware/NewsLetter.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/YesayaSoftware/Notification.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.env.travis" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +183,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -206,11 +199,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/resources/js" />
       <recent name="$PROJECT_DIR$/resources/js/Pages" />
-      <recent name="$PROJECT_DIR$/database/migrations" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/js/Components" />
@@ -272,7 +265,7 @@
       <workItem from="1621498910209" duration="159000" />
       <workItem from="1621506386051" duration="8340000" />
       <workItem from="1621690044923" duration="6930000" />
-      <workItem from="1621742449283" duration="172000" />
+      <workItem from="1621742449283" duration="400000" />
     </task>
     <servers />
   </component>
