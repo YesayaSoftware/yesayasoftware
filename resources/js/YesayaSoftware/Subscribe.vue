@@ -61,7 +61,7 @@
 import {CheckCircleIcon} from "@heroicons/vue/solid/esm";
 
 export default {
-    name: 'NewsLetter',
+    name: 'Subscribe',
 
     data() {
         return {
@@ -79,7 +79,7 @@ export default {
 
     methods: {
         store() {
-            this.form.post(this.route('newsletter.store'), {
+            this.form.post(this.route('subscribe.store'), {
                 preserveScroll: true,
                 onFinish: () => this.form.reset(),
             })

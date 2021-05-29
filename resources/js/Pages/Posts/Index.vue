@@ -49,7 +49,7 @@
             </div>
         </template>
 
-        <post-list :posts="posts"/>
+        <post-list :posts="posts.data"/>
     </app-layout>
 </template>
 

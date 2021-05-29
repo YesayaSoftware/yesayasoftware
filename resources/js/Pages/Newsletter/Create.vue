@@ -4,12 +4,12 @@
             <div class="lg:flex lg:items-center lg:justify-between">
                 <div class="flex-1 min-w-0">
                     <h2 class="dark:text-gray-300 font-semibold text-xl text-gray-800 leading-tight">
-                        New Category
+                        New Newsletter
                     </h2>
 
                     <div class="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap">
                         <inertia-link
-                            :href="route('categories.index')"
+                            :href="route('newsletters.index')"
                             class="mt-2 flex items-center text-sm leading-5 text-blue-500 sm:mr-6">
                             <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor"
                                  viewBox="0 0 24 24">
@@ -25,7 +25,7 @@
                 <div class="mt-5 flex lg:mt-0 lg:ml-4">
                     <span class="sm:ml-3 shadow-sm rounded-md">
                         <yesaya-software-primary-link
-                            :href="route('categories.index')">
+                            :href="route('newsletters.index')">
                             <svg class="-ml-1 mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M4 6C4 4.89543 4.89543 4 6 4H8C9.10457 4 10 4.89543 10 6V8C10 9.10457 9.10457 10 8 10H6C4.89543 10 4 9.10457 4 8V6Z"
@@ -69,7 +69,7 @@
                                 <div>
                                     <div>
                                         <h3 class="dark:text-gray-300 text-lg leading-6 font-medium text-gray-900">
-                                            New Category
+                                            New Newsletter
                                         </h3>
 
                                         <p class="mt-1 text-sm text-gray-500">
@@ -80,39 +80,39 @@
                                     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                                         <div class="sm:col-span-4">
                                             <yesaya-software-label
-                                                for="name"
-                                                :class="errors.name ? 'text-red-900' : 'text-gray-700'"
-                                                value="Name" />
+                                                for="title"
+                                                :class="errors.title ? 'text-red-900' : 'text-gray-700'"
+                                                value="Title" />
 
                                             <div class="mt-1 flex rounded-md shadow-sm">
-                                                <yesaya-software-input id="name" type="text"
-                                                                       v-model="form.name" autofocus
-                                                                       :class="errors.name ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500': ''"/>
+                                                <yesaya-software-input id="title" type="text"
+                                                                       v-model="form.title" autofocus
+                                                                       :class="errors.title ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500': ''"/>
                                             </div>
 
-                                            <p v-if="errors" class="mt-2 text-sm text-red-600" id="email-error">
-                                                <span v-if="errors.name">{{ errors.name }}.</span>
+                                            <p v-if="errors" class="mt-2 text-sm text-red-600" id="title-error">
+                                                <span v-if="errors.title">{{ errors.title }}.</span>
                                             </p>
                                         </div>
 
                                         <div class="sm:col-span-6">
                                             <yesaya-software-label
-                                                for="description"
-                                                :class="errors.description ? 'text-red-900' : 'text-gray-700'"
-                                                value="Description" />
+                                                for="body"
+                                                :class="errors.body ? 'text-red-900' : 'text-gray-700'"
+                                                value="Body" />
 
                                             <div class="mt-1">
-                                                <YesayaSoftwareTextarea  v-model="form.description"
-                                                                         id="description"
-                                                                         name="description"
-                                                                         :class="errors.description ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500': ''"/>
+                                                <YesayaSoftwareTextarea  v-model="form.body"
+                                                                         id="body"
+                                                                         name="body"
+                                                                         :class="errors.body ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500': ''"/>
                                             </div>
 
-                                            <p v-if="errors" class="mt-2 text-sm" id="description-error">
-                                                    <span v-if="errors.description"
-                                                          class="text-red-600">{{ errors.description }}.</span>
+                                            <p v-if="errors" class="mt-2 text-sm" id="body-error">
+                                                    <span v-if="errors.body"
+                                                          class="text-red-600">{{ errors.body }}.</span>
 
-                                                <span v-else class="text-gray-500">Write a few sentences to describe this Category.</span>
+                                                <span v-else class="text-gray-500">Write a few sentences to describe this newsletter.</span>
                                             </p>
                                         </div>
 
@@ -135,7 +135,7 @@
                                                             stroke-linejoin="round"/>
                                                     </svg>
 
-                                                    <!-- New Category Thumbnail Preview -->
+                                                    <!-- New Newsletter Thumbnail Preview -->
                                                     <div class="w-full" v-show="thumbnailPreview">
                                                         <span class="block w-full h-72"
                                                               :style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + thumbnailPreview + '\');'">
@@ -173,7 +173,7 @@
 
                                 <div class="pt-5">
                                     <div class="flex justify-end">
-                                        <yesaya-software-secondary-link :href="route('categories.index')">
+                                        <yesaya-software-secondary-link :href="route('newsletters.index')">
                                             Cancel
                                         </yesaya-software-secondary-link>
 
@@ -216,8 +216,8 @@ export default {
     data() {
         return {
             form: {
-                name: '',
-                description: '',
+                title: '',
+                body: '',
                 thumbnail: ''
             },
 
@@ -230,13 +230,13 @@ export default {
             if (this.$refs.thumbnail)
                 this.form.thumbnail = this.$refs.thumbnail.files[0]
 
-            let category = new FormData()
+            let newsletter = new FormData()
 
-            category.append('name', this.form.name)
-            category.append('description', this.form.description)
-            category.append('thumbnail', this.form.thumbnail)
+            newsletter.append('title', this.form.title)
+            newsletter.append('body', this.form.body)
+            newsletter.append('thumbnail', this.form.thumbnail)
 
-            this.$inertia.post(route('categories.store'), category, {
+            this.$inertia.post(route('newsletters.store'), newsletter, {
                 preserveScroll: true
             })
         },

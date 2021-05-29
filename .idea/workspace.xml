@@ -2,10 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09c43f9b-a513-44e0-ace6-c4d824969ee2" name="Default Changelist" comment="&lt;span v-if=&quot;value&quot;&gt;{{ value }}&lt;/span&gt;&lt;span v-if=&quot;value&quot;&gt;{{ value }}&lt;/span&gt;">
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Newsletter/Create.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Newsletter/Edit.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Newsletter/Index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Newsletter/Show.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/emails/newsletter.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NewsletterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NewsletterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Newsletter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Newsletter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_21_033509_create_newsletters_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_21_033509_create_newsletters_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Layouts/AppLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Layouts/AppLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Categories/Create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Categories/Create.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Categories/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Categories/Edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Categories/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Categories/Show.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Posts/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Posts/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Posts/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Posts/List.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/YesayaSoftware/NewsLetter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/YesayaSoftware/Subscribe.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +201,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/Pages" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -200,11 +217,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/Pages" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/resources/js" />
-      <recent name="$PROJECT_DIR$/resources/js/Pages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/js/Components" />
@@ -266,7 +283,10 @@
       <workItem from="1621498910209" duration="159000" />
       <workItem from="1621506386051" duration="8340000" />
       <workItem from="1621690044923" duration="6930000" />
-      <workItem from="1621742449283" duration="2431000" />
+      <workItem from="1621742449283" duration="14719000" />
+      <workItem from="1622014738841" duration="2000" />
+      <workItem from="1622015893122" duration="439000" />
+      <workItem from="1622025392432" duration="1504000" />
     </task>
     <servers />
   </component>

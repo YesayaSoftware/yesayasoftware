@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
-                    <div v-for="post in posts.data" :key="post.id" class="flex flex-col rounded-lg shadow-lg overflow-hidden dark:bg-gray-900">
+                    <div v-for="post in posts" :key="post.id" class="flex flex-col rounded-lg shadow-lg overflow-hidden dark:bg-gray-900">
                         <inertia-link :href="route('posts.show', post.slug)" class="block mt-2">
                             <div class="flex-shrink-0">
                                 <img class="h-48 w-full object-cover" :src="post.thumbnail_url" :alt="post.title" />

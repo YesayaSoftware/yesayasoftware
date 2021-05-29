@@ -143,7 +143,7 @@
 
         <FeaturedPosts :posts="posts"/>
 
-        <NewsLetter/>
+        <Subscribe/>
 
         <x-footer />
     </div>
@@ -151,7 +151,7 @@
 
 <script>
 import XFooter from '../YesayaSoftware/Footer'
-import NewsLetter from "@/YesayaSoftware/NewsLetter";
+import Subscribe from "@/YesayaSoftware/Subscribe";
 import FeaturedPosts from "@/YesayaSoftware/FeaturedPosts";
 import Goals from "@/YesayaSoftware/Goals";
 
@@ -167,7 +167,7 @@ import Goals from "@/YesayaSoftware/Goals";
         components: {
             Goals,
             FeaturedPosts,
-            NewsLetter,
+            Subscribe,
             XFooter
         },
 

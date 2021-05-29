@@ -15,7 +15,18 @@ class CreateNewslettersTable extends Migration
     {
         Schema::create('newsletters', function (Blueprint $table) {
             $table->id();
-            $table->string("email");
+
+            $table->string('slug')->nullable();
+            $table->string("title");
+            $table->string('body');
+            $table->string('thumbnail')->nullable();
+
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onDelete('cascade');
+
+            $table->boolean('status')->default(false);
+
             $table->timestamps();
         });
     }

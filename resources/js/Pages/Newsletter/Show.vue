@@ -4,12 +4,12 @@
             <div class="lg:flex lg:items-center lg:justify-between">
                 <div class="flex-1 min-w-0">
                     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-100 leading-tight">
-                        Category
+                        Newsletter
                     </h2>
 
                     <div class="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap">
                         <inertia-link
-                            :href="route('categories.index')"
+                            :href="route('newsletters.index')"
                             class="mt-2 flex items-center text-sm leading-5 text-blue-500 sm:mr-6">
                             <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor"
                                  viewBox="0 0 24 24">
@@ -19,16 +19,6 @@
 
                             Go back
                         </inertia-link>
-
-                        <div class="mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mr-6">
-                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor"
-                                 viewBox="0 0 24 24">
-                                <path
-                                    d="M13 16v5a1 1 0 01-1 1H9l-3-6a2 2 0 01-2-2 2 2 0 01-2-2v-2c0-1.1.9-2 2-2 0-1.1.9-2 2-2h7.59l4-4H20a2 2 0 012 2v14a2 2 0 01-2 2h-2.41l-4-4H13zm0-2h1.41l4 4H20V4h-1.59l-4 4H13v6zm-2 0V8H6v2H4v2h2v2h5zm0 2H8.24l2 4H11v-4z"/>
-                            </svg>
-
-                            {{ category.posts.length }}
-                        </div>
                     </div>
                 </div>
 
@@ -54,7 +44,7 @@
                     <span v-if="$page.props.user && $page.props.user.is_admin"
                           class="hidden sm:block shadow-sm rounded-md">
                         <yesaya-software-secondary-link
-                            :href="route('categories.edit', category.slug)"
+                            :href="route('newsletters.edit', newsletter.slug)"
                             class="dark:bg-gray-800 dark:hover:bg-gray-900">
                             <svg class="-ml-1 mr-2 h-5 w-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -66,16 +56,16 @@
                     </span>
 
                     <span v-if="$page.props.user" class="sm:ml-3 shadow-sm rounded-md">
-                        <form @submit.prevent="subscribe">
-                            <yesaya-software-button :class="classes">
+                        <form @submit.prevent="publish">
+                            <yesaya-software-button>
                                 <svg class="-ml-1 mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
                                           d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                                           clip-rule="evenodd"/>
                                 </svg>
 
-                                <span v-if="category.is_subscribed_to">Unsubscribe</span>
-                                <span v-else>Subscribe</span>
+                                <span v-if="newsletter.status === true">Published</span>
+                                <span v-else>Publish</span>
                             </yesaya-software-button>
                         </form>
                     </span>
@@ -102,7 +92,7 @@
                              class="origin-top-right absolute right-0 mt-2 -mr-1 w-48 rounded-md shadow-lg">
                             <div class="py-1 rounded-md bg-white shadow-xs">
                                 <inertia-link
-                                    :href="route('categories.edit', category.slug)"
+                                    :href="route('newsletters.edit', newsletter.slug)"
                                     class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
                                     Edit
                                 </inertia-link>
@@ -135,25 +125,15 @@
                         <div class="lg:grid lg:grid-cols-12 lg:gap-8">
                             <div class="sm:text-center lg:col-span-6 lg:text-left">
                                 <h2 class="mt-1 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 dark:text-gray-100 sm:leading-none sm:text-6xl lg:text-5xl xl:text-6xl">
-                                    {{ category.name }}
+                                    {{ newsletter.title }}
                                 </h2>
 
                                 <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl"
-                                   v-html="category.description"/>
+                                   v-html="newsletter.body"/>
 
                                 <div class="mt-5 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
                                     <p class="mt-3 text-sm leading-5 text-gray-500">
-                                        <span
-                                            class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium leading-5 bg-blue-100 text-blue-800">
-                                            {{ category.posts.length }}
-                                        </span> posts have been published in this category and
 
-                                        <span
-                                            class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium leading-5 bg-blue-100 text-blue-800">
-                                            {{ category.subscription_count }}
-                                        </span> users have
-
-                                        <span class="font-medium text-gray-900 underline"> subscribed</span>.
                                     </p>
                                 </div>
                             </div>
@@ -178,7 +158,7 @@
 
                                 <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
                                     <img class="w-full"
-                                         :src="category.thumbnail_url" :alt="category.name"/>
+                                         :src="newsletter.thumbnail_url" :alt="newsletter.title"/>
                                 </div>
                             </div>
                         </div>
@@ -186,25 +166,20 @@
                 </div>
             </div>
         </div>
-
-        <post-list v-if="category.posts.length > 0" :posts="category.posts"/>
     </app-layout>
 </template>
 
 <script>
 import AppLayout from './../../Layouts/AppLayout'
-import PostList from './../../Pages/Posts/List'
-import YesayaSoftwareTextarea from "@/YesayaSoftware/Form/Textarea";
 import YesayaSoftwareButton from "@/YesayaSoftware/Form/PrimaryButton";
 import YesayaSoftwarePrimaryLink from "@/YesayaSoftware/Form/PrimaryLink";
 import YesayaSoftwareSecondaryLink from "@/YesayaSoftware/Form/SecondaryLink";
 
 export default {
-    props: ['category'],
+    props: ['newsletter'],
 
     components: {
         AppLayout,
-        PostList,
         YesayaSoftwareButton,
         YesayaSoftwarePrimaryLink,
         YesayaSoftwareSecondaryLink
@@ -212,38 +187,21 @@ export default {
 
     data() {
         return {
-            loading: false,
             hideMobileNav: true
         }
     },
 
-    computed: {
-        classes() {
-            return [
-                this.category.is_subscribed_to ? 'bg-gray-900 hover:bg-gray-800 dark:bg-gray-800 dark:hover:bg-gray-900' : ''
-            ];
-        }
-    },
-
     methods: {
-        subscribe() {
-            if (this.category.is_subscribed_to === true)
-                this.$inertia.delete(this.route('categories.subscriptions.destroy', this.category.slug), {
-                    onBefore: () => confirm('Are you sure you want to unsubscribe to this category?'),
-                    preserveScroll: true
-                })
-            else
-                this.$inertia.post(this.route('categories.subscriptions.store', this.category.slug), {
-                    preserveScroll: true
-                })
+        publish() {
+            this.$inertia.post(this.route('newsletters.publish', this.newsletter.slug), {
+                onBefore: () => confirm('Are you sure you want to publish this newsletter?'),
+                preserveScroll: true
+            })
         },
 
         destroy() {
-            this.loading = true
-
-            this.$inertia.delete(this.route('categories.destroy', this.category.slug), {
-                onBefore: () => confirm('Are you sure you want to delete this category?'),
-                onFinish: () => this.loading = false,
+            this.$inertia.delete(this.route('newsletters.destroy', this.newsletter.slug), {
+                onBefore: () => confirm('Are you sure you want to delete this newsletter?'),
                 preserveScroll: true
             })
         },
