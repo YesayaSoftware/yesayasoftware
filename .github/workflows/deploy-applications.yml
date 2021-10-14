@@ -10,11 +10,11 @@ jobs:
     name: Create deployment artifacts
     runs-on: ubuntu-latest
 
-  steps:
-    - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-    - name: Compile CSS and Javascript
-      run: | 
-        npm install
-        npm run prod
+      - name: Compile CSS and Javascript
+        run: |
+          npm install
+          npm run prod
 
