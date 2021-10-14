@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="09c43f9b-a513-44e0-ace6-c4d824969ee2" name="Default Changelist" comment="&lt;span v-if=&quot;value&quot;&gt;{{ value }}&lt;/span&gt;&lt;span v-if=&quot;value&quot;&gt;{{ value }}&lt;/span&gt;">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/yesayasoftware.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/yesayasoftware.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SubscribeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SubscribeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Favorite.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Favorite.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Newsletter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Newsletter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Subscribe.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Subscribe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/fortify.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/fortify.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,6 +184,13 @@
       <path value="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge" />
       <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
       <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/vendor/nette/utils" />
+      <path value="$PROJECT_DIR$/vendor/nette/schema" />
+      <path value="$PROJECT_DIR$/vendor/dflydev/dot-access-data" />
+      <path value="$PROJECT_DIR$/vendor/aws/aws-crt-php" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/vendor/laravel/serializable-closure" />
+      <path value="$PROJECT_DIR$/vendor/league/config" />
     </include_path>
   </component>
   <component name="ProjectId" id="1jJjYGnlcrYZaYyeqJXzv8mdQsI" />
@@ -181,7 +202,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/Pages" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -271,6 +292,15 @@
       <workItem from="1624074262055" duration="938000" />
       <workItem from="1624104325738" duration="639000" />
       <workItem from="1624197259297" duration="886000" />
+      <workItem from="1625560157034" duration="226000" />
+      <workItem from="1627310031334" duration="5277000" />
+      <workItem from="1627362215745" duration="247000" />
+      <workItem from="1627382255661" duration="306000" />
+      <workItem from="1632563456644" duration="6306000" />
+      <workItem from="1632831568632" duration="4889000" />
+      <workItem from="1633837119855" duration="2959000" />
+      <workItem from="1633999365391" duration="311000" />
+      <workItem from="1634187306502" duration="2478000" />
     </task>
     <servers />
   </component>

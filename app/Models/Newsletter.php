@@ -84,7 +84,7 @@ class Newsletter extends Model
      */
     public function path(): string
     {
-        return route('newletter.show', $this->slug);
+        return route('newsletter.show', $this->slug);
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Newsletter;
+use App\Models\Subscribe;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -21,7 +21,7 @@ class SubscribeController extends Controller
             'email' => 'required'
         ]);
 
-        Newsletter::firstOrCreate([
+        Subscribe::firstOrCreate([
             'email' => $request->email,
         ]);
 

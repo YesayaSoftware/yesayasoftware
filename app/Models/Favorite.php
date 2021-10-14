@@ -28,7 +28,7 @@ class Favorite extends Model
      *
      * @return MorphTo
      */
-    public function favorited()
+    public function favorited(): MorphTo
     {
         return $this->morphTo();
     }
@@ -38,7 +38,7 @@ class Favorite extends Model
      *
      * @return BelongsTo
      */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

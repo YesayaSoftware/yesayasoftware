@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
@@ -112,5 +113,25 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getIsAdminAttribute()
     {
         return $this->isAdmin();
+    }
+
+    /**
+     * A user has many category.
+     *
+     * @return HasMany
+     */
+    public function categories(): HasMany
+    {
+        return $this->hasMany(Category::class);
+    }
+
+    /**
+     * A user has many posts.
+     *
+     * @return HasMany
+     */
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
     }
 }
