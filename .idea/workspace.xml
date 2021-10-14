@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09c43f9b-a513-44e0-ace6-c4d824969ee2" name="Default Changelist" comment="&lt;span v-if=&quot;value&quot;&gt;{{ value }}&lt;/span&gt;&lt;span v-if=&quot;value&quot;&gt;{{ value }}&lt;/span&gt;">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.github/workflows/deploy-applications.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/yesayasoftware.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/yesayasoftware.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SubscribeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SubscribeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Favorite.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Favorite.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Newsletter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Newsletter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Subscribe.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Subscribe.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/fortify.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/fortify.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -300,7 +290,7 @@
       <workItem from="1632831568632" duration="4889000" />
       <workItem from="1633837119855" duration="2959000" />
       <workItem from="1633999365391" duration="311000" />
-      <workItem from="1634187306502" duration="2478000" />
+      <workItem from="1634187306502" duration="3373000" />
     </task>
     <servers />
   </component>
