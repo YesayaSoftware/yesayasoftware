@@ -1,0 +1,9 @@
+[
+    {
+        "name": "yesayasoftware",
+        "port": "22",
+        "beforeHooks": "chmod -R 0777 ${RELEASE_PATH}/storage",
+        "afterHooks": "",
+        "path": "/home/yesayasoftware/yesayasoftware.co.tz"
+    }
+]
