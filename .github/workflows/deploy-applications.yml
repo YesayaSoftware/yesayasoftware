@@ -24,3 +24,10 @@ jobs:
           php-version: 8.0
           extensions: mbstring, ctype, fileinfo, openssl, PDO, bcmath, json, tokenizer, xml
 
+      - name: Composer install
+        run: |
+          composer install --no-dev --no-interaction --prefer-dist
+
+      - name: Create deployment artifact
+        run: tar -czf app.tar.gz --exclude=*.git --exclude=node_modules --exclude=tests *
+
